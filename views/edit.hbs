@@ -1,0 +1,45 @@
+<div class="edit-container">
+  <form action="/records/{{ record._id }}?_method=PUT" method="POST">
+    <div class="form-group row mb-3">
+      <label class="col-4 col-form-label">* 必填欄位</label>
+      <label class="col-8 col-form-label text-center">請輸入你的支出</label>
+    </div>
+
+    <div class="form-group row mb-3">
+      <label for="edit-name" class="col-4 col-form-label">名稱*:</label>
+      <div class="col-8">
+        <input type="text" class="form-control" name="name" id="edit-name" placeholder="請輸入支出名稱" value="{{ record.name }}">
+      </div>
+    </div>
+
+    <div class="form-group row mb-3">
+      <label for="edit-date" class="col-4 col-form-label">日期*:</label>
+      <div class="col-8">
+        <input type="date" class="form-control" name="date" id="edit-date" placeholder="請輸入支出日期" value="{{ record.date }}">
+      </div>
+    </div>
+
+    <div class="form-group row mb-3">
+      <label for="edit-category" class="col-4 col-form-label">類別*:</label>
+      <div class="col-8">
+        <select class="form-control" name="categoryId" id="edit-category" value="{{ record.categoryId }}">
+          {{#each categorys}}
+            <option value="{{this.id}}"> {{this.name}} </option>
+          {{/each}}
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group row mb-3">
+      <label for="edit-amount" class="col-4 col-form-label">金額*:</label>
+      <div class="col-8">
+        <input type="text" class="form-control" name="amount" id="edit-amount" placeholder="請輸入支出金額" value="{{ record.amount }}">
+      </div>
+    </div>
+
+    <div class="text-center">
+      <button type="submit" class="btn btn-primary">送出</button>
+      <a href="/" class="btn btn-secondary">返回</a>
+    </div>
+  </form>
+</div>

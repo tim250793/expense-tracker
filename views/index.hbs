@@ -1,0 +1,45 @@
+<header class="select-container">
+  <form action="/sort">
+    <select class="form-select" id="sort" name="sort" aria-label="Default select example" onchange="this.form.submit()">
+      <option>類別</option>
+      {{#each categorys}}
+        <option value="{{this.id}}" {{this.selected}}>{{this.name}}</option>
+      {{/each}}
+    </select>
+  </form>
+</header>
+
+<main>
+  <h4 style="display: inline; vertical-align: middle;">總金額：</h4>
+  <div class="total-amount">{{totalAmount}}</div>
+
+  <table class="table table-striped">
+    <tbody>
+      {{#each records}}
+      <tr>
+        <td class="col-1 text-center">
+          <i class="{{this.icon}} fa-3x" style="color:#90D1DF;"></i>
+        </td>
+        <td>
+          <div class="row">
+            <h4>{{this.name}}</h4>
+            <p>{{this.date}}</p>
+          </div>
+        </td>
+        <td class="text-center">{{this.amount}}</td>
+        <td class="col-3 text-center" style="background-color: #F8F9FA;">
+          <a href="./records/{{ this._id }}/edit" class="btn btn-success" >編輯</a>
+          <form action="./records/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;">
+            <button type="submit" class="btn btn-danger" >刪除</button>
+          </form>
+        </td>
+        
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</main>
+
+<footer class="col text-center">
+  <a class="btn create-record" href="./records/new">新增支出</a>
+</footer>
