@@ -1,0 +1,31 @@
+.select-container {
+    margin: 10px;
+  }
+  
+  .select-container > select {
+    width: 50%;
+    margin: 10px auto;
+  }
+  
+  .total-amount {
+    color: #EC673E;
+    font-size: 80px;
+    text-align: right;
+  }
+  
+  .text-center {
+    text-align: center;
+    vertical-align: middle;
+  }
+  
+  .edit-container,
+  .new-container {
+    width: 70%;
+    margin: 10px auto;
+    padding: 10px;
+  }
+  
+  .create-record {
+    background: #EC673E; 
+    color: #fff;
+  }
