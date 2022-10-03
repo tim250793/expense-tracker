@@ -12,14 +12,14 @@ router.get('/', (req, res) => {
 
   Record.find({ userId }) // 加入查詢條件, 取出 Record model 裡的所有資料
     .lean() // 把 Mongoose 的 Model 物件轉換成乾淨的 JavaScript 資料陣列
-    .sort({ _id: 'asc' }) // desc
+    .sort({ _id: 'asc' }) // 升冪排列
     .then(records => {
       let totalAmount = 0
 
       Categorys
       .find()
       .lean()
-      .sort({ _id: 'asc' }) // desc
+      .sort({ _id: 'asc' }) // 
       .then(categorys => {
         Promise.all([
           records.map(record => {
