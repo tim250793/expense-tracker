@@ -13,6 +13,7 @@ module.exports = app => {
   passport.use(new LocalStrategy({ 
     // 預設使用 username 和 password 作為驗證的欄位
     usernameField: 'email',
+    
     passportField: 'password',
     passReqToCallback: true, // 如果需要在 verify callback 中取得 req
   }, 

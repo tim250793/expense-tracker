@@ -10,10 +10,17 @@ router.get('/new', (req, res) => {
 
   Category.find() // 取出 Category model 裡的所有資料
     .lean()
-    .sort({ id : 'asc' }) // 升冪'asc', 降冪'desc'
+    .sort({ id: 'asc' }) // 升冪'asc', 降冪'desc'
     .then(categorys => {
+      const date = new Date()
+      // 如果月份為個位數, 就把月份第1位數補0變成兩位數, ex: 2022-09-04
+      const month = (date.getMonth() + 1) < 10 ? `0${date.getMonth() + 1}` : `${date.getMonth() + 1}`
+      // 如果天數為個位數, 就把月份第1位數補0變成兩位數, ex: 2022-09-04
+      const day = date.getDate() < 10 ? `0${date.getDate()}` : `${date.getDate()}`
+      const today = `${date.getFullYear()}-${month}-${day}`
+      console.log(categorys, today)
       res.render('new', { categorys, today })
-  })
+    })
     .catch(error => console.error(error))
 })
 
@@ -42,8 +49,8 @@ router.get('/:id', (req, res) => {
 router.get('/:id/edit', async (req, res) => {
   const userId = req.user._id
   const _id = req.params.id
-  
-  Record.findById({_id, userId})
+
+  Record.findById({ _id, userId })
     .lean()
     .then(record => {
       Category.find()
@@ -51,16 +58,16 @@ router.get('/:id/edit', async (req, res) => {
         .sort({ _id: 'asc' })
         .then(categorys => res.render('edit', { record, categorys }))
     })
-    .catch(error => console.log(error))  
+    .catch(error => console.log(error))
 })
 
 router.put('/:id', (req, res) => {
   // 當前登入使用者 user id 
   req.body.userId = req.user._id
   const _id = req.params.id
-  
-  return Record.findByIdAndUpdate( _id, req.body) // 存入資料庫
-    .then(()=> res.redirect(`/`))
+
+  return Record.findByIdAndUpdate(_id, req.body) // 存入資料庫
+    .then(() => res.redirect(`/`))
     .catch(error => console.log(error))
 })
 
