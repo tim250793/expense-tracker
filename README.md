@@ -14,7 +14,7 @@
 
 
 ## 頁面預覽
-![Home page](./public/images/img_expense-tracker.jpg)
+![Home page](./public/images/homepage.jpg)
 
 
 ## 使用說明
