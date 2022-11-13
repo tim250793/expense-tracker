@@ -2,7 +2,7 @@
   <form action="/sort">
     <select class="form-select" id="sort" name="sort" aria-label="Default select example" onchange="this.form.submit()">
       <option>類別</option>
-      {{#each categorys}}
+      {{#each categories}}
         <option value="{{this.id}}" {{this.selected}}>{{this.name}}</option>
       {{/each}}
     </select>

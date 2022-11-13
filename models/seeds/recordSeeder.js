@@ -19,31 +19,31 @@ const SEED_USER = {
 const SEED_RECORD = [
   {
     name: '早餐',
-    date: '2022-4-23',
-    amount: 60,
+    date: '2022-01-01',
+    amount: 100,
     categoryId: 4
   },
   {
     name: '午餐',
-    date: '2022-4-23',
-    amount: 60,
+    date: '2022-01-01',
+    amount: 100,
     categoryId: 4
   },
   {
     name: '公車',
-    date: '2022-4-24',
+    date: '2022-01-02',
     amount: 120,
     categoryId: 2
   },
   {
     name: '房租',
-    date: '2022-4-1',
+    date: '2022-01-02',
     amount: 25000,
     categoryId: 1
   },
   {
     name: '手搖飲料',
-    date: '2022-4-23',
+    date: '2022-01-03',
     amount: 60,
     categoryId: 3
   }]

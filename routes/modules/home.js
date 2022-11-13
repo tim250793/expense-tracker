@@ -4,7 +4,7 @@ const router = express.Router()
 
 // 引用 Record model
 const Record = require('../../models/record')
-const Categorys = require('../../models/category')
+const Categories = require('../../models/category')
 
 // 定義首頁路由
 router.get('/', (req, res) => {
@@ -16,14 +16,14 @@ router.get('/', (req, res) => {
     .then(records => {
       let totalAmount = 0
 
-      Categorys
+      Categories
         .find()
         .lean()
         .sort({ _id: 'asc' }) // 
-        .then(categorys => {
+        .then(categories => {
           Promise.all([
             records.map(record => {
-              categorys.map(category => {
+              categories.map(category => {
                 if (record.categoryId === category.id) {
                   record.icon = category.icon
                 }
@@ -33,7 +33,7 @@ router.get('/', (req, res) => {
             })
           ])
             .then(() => {
-              res.render('index', { records, categorys, totalAmount })
+              res.render('index', { records, categories, totalAmount })
             })
         })
     }) // 將資料傳給 index 樣板
@@ -44,7 +44,7 @@ router.get('/', (req, res) => {
 router.get('/sort', (req, res) => {
   const sort = req.query.sort.trim().toLowerCase()
   const userId = req.user._id
-  
+
   if (sort === '類別') {
     return res.redirect('/')
   }
@@ -54,14 +54,14 @@ router.get('/sort', (req, res) => {
     .then(records => {
       let totalAmount = 0
 
-      Categorys
+      Categories
         .find()
         .lean()
         .sort({ _id: 'asc' }) // desc
-        .then(categorys => {
+        .then(categories => {
           Promise.all([
             records.map(record => {
-              categorys.map(category => {
+              categories.map(category => {
                 if (record.categoryId === category.id) {
                   category.selected = 'selected'
                   record.icon = category.icon
@@ -71,7 +71,7 @@ router.get('/sort', (req, res) => {
             })
           ])
             .then(() => {
-              res.render('index', { records, categorys, totalAmount })
+              res.render('index', { records, categories, totalAmount })
             })
         })
     })
