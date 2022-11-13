@@ -2,11 +2,11 @@ const bcrypt = require('bcryptjs')
 if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config()
 }
-const Record = require('../../../models/record')
-const Category = require('../../../models/category')
-const User = require('../../../models/user')
-const db = require('../../../config/mongoose')
-const categoriesJson = require('../../../categroies.json')
+const Record = require('../record')
+const Category = require('../category')
+const User = require('../user')
+const db = require('../../config/mongoose')
+const categoriesJson = require('../../categroies.json')
 
 const CATEGORY = {
     家居物業: "fa-solid fa-house",
