@@ -22,7 +22,7 @@
     <div class="form-group row mb-3">
       <label for="new-category" class="col-4 col-form-label">類別*:</label>
       <div class="col-8">
-        <select class="form-control" name="categoryId" id="new-category">
+        <select class="form-control" name="categoryId" id="new-category" required>
           <option selected disabled> Select </option>
           {{#each categorys}}
             <option value="{{this.id}}"> {{this.name}} </option>

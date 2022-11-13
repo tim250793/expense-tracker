@@ -18,7 +18,7 @@
       {{#each records}}
       <tr>
         <td class="col-1 text-center">
-          <i class="{{this.icon}} fa-3x" style="color:#90D1DF;"></i>
+          <i class="{{this.icon}} fa-3x" style="color:#68bfd3;"></i>
         </td>
         <td>
           <div class="row">
@@ -27,7 +27,7 @@
           </div>
         </td>
         <td class="text-center">{{this.amount}}</td>
-        <td class="col-3 text-center" style="background-color: #e1e9f1;">
+        <td class="col-3 text-center" style="background-color: #e1e6ec;">
           <a href="./records/{{ this._id }}/edit" class="btn btn-success" >編輯</a>
           <form action="./records/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;">
             <button type="submit" class="btn btn-danger" >刪除</button>

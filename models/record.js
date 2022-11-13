@@ -10,7 +10,12 @@ const recordSchema = new Schema({
     index: true,
     required: true
    },
-  categoryId: { type: Number, required: true },
+   categoryId: {
+    type: Number,
+    ref: 'Category',
+    index: true,
+    required: false
+  },
   createAt: { type: Date, default: Date.now }
 })
 

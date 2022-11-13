@@ -17,25 +17,25 @@ router.get('/', (req, res) => {
       let totalAmount = 0
 
       Categorys
-      .find()
-      .lean()
-      .sort({ _id: 'asc' }) // 
-      .then(categorys => {
-        Promise.all([
-          records.map(record => {
-            categorys.map(category => {
-              if (record.categoryId === category.id) {
-                record.icon = category.icon
-              }
-            })
+        .find()
+        .lean()
+        .sort({ _id: 'asc' }) // 
+        .then(categorys => {
+          Promise.all([
+            records.map(record => {
+              categorys.map(category => {
+                if (record.categoryId === category.id) {
+                  record.icon = category.icon
+                }
+              })
 
-            totalAmount += record.amount
-          })
-        ])
-        .then(() => {
-          res.render('index', { records, categorys, totalAmount })
+              totalAmount += record.amount
+            })
+          ])
+            .then(() => {
+              res.render('index', { records, categorys, totalAmount })
+            })
         })
-      })
     }) // 將資料傳給 index 樣板
     .catch(error => console.error(error)) // 錯誤處理
 })
@@ -43,38 +43,38 @@ router.get('/', (req, res) => {
 // 設置搜尋路由
 router.get('/sort', (req, res) => {
   const sort = req.query.sort.trim().toLowerCase()
-
+  const userId = req.user._id
+  
   if (sort === '類別') {
     return res.redirect('/')
   }
 
-  Record.find({ categoryId: sort })
-  .lean()
-  .then(records => {
-    let totalAmount = 0
-
-    Categorys
-    .find()
+  Record.find({ userId, categoryId: sort })
     .lean()
-    .sort({ _id: 'asc' }) // desc
-    .then(categorys => {
-      Promise.all([
-        records.map(record => {
-          categorys.map(category => {
-            if (record.categoryId === category.id) {
-              category.selected = 'selected'
-              record.icon = category.icon
-            }
-          })
-          totalAmount += record.amount
+    .then(records => {
+      let totalAmount = 0
+
+      Categorys
+        .find()
+        .lean()
+        .sort({ _id: 'asc' }) // desc
+        .then(categorys => {
+          Promise.all([
+            records.map(record => {
+              categorys.map(category => {
+                if (record.categoryId === category.id) {
+                  category.selected = 'selected'
+                  record.icon = category.icon
+                }
+              })
+              totalAmount += record.amount
+            })
+          ])
+            .then(() => {
+              res.render('index', { records, categorys, totalAmount })
+            })
         })
-      ])
-      .then(() => {
-        res.render('index', { records, categorys, totalAmount })
-      })
     })
-  })
 })
 
-// 匯出路由模組
 module.exports = router
