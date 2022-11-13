@@ -14,7 +14,7 @@
 
 
 ## 頁面預覽
-![Home page](./public/images/homepage.jpg)
+![Home page](./public/images/homepage.png)
 
 
 ## 使用說明
