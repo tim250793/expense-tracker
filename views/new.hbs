@@ -8,22 +8,22 @@
     <div class="form-group row mb-3">
       <label for="new-name" class="col-4 col-form-label">名稱*:</label>
       <div class="col-8">
-        <input type="text" class="form-control" name="name" id="new-name" placeholder="請輸入支出名稱">
+        <input type="text" class="form-control" name="name" id="new-name" placeholder="請輸入支出名稱" required>
       </div>
     </div>
 
     <div class="form-group row mb-3">
       <label for="new-date" class="col-4 col-form-label">日期*:</label>
       <div class="col-8">
-        <input type="date" class="form-control" name="date" id="new-date" placeholder="請輸入支出日期" value="{{ today }}">
+        <input type="date" class="form-control" name="date" id="new-date" placeholder="請輸入支出日期" value="{{ today }}" required>
       </div>
     </div>
 
     <div class="form-group row mb-3">
       <label for="new-category" class="col-4 col-form-label">類別*:</label>
       <div class="col-8">
-        <select class="form-control" name="categoryId" id="new-category" required>
-          <option selected disabled> Select </option>
+        <select class="form-control" name="categoryId" id="new-category" required />
+          <option selected ="true" value="" disabled="disabled"> Select </option>
           {{#each categorys}}
             <option value="{{this.id}}"> {{this.name}} </option>
           {{/each}}
@@ -34,7 +34,7 @@
     <div class="form-group row mb-3">
       <label for="new-amount" class="col-4 col-form-label">金額*:</label>
       <div class="col-8">
-        <input type="number" class="form-control" name="amount" id="new-amount" placeholder="請輸入支出金額">
+        <input type="number" class="form-control" name="amount" id="new-amount" placeholder="請輸入支出金額" required>
       </div>
     </div>
 
